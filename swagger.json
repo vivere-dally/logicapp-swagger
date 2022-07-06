@@ -1,0 +1,91 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0.0",
+        "title": "Greet",
+        "description": "Azure Logic App."
+    },
+    "host": "prod-14.ukwest.logic.azure.com",
+    "basePath": "/workflows/5a00b6c6997441c283637810b07cd150/triggers",
+    "schemes": [
+        "https"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/manual/paths/invoke/greet": {
+            "post": {
+                "description": "Trigger a run of the logic app.",
+                "operationId": "manual-invoke",
+                "parameters": [
+                    {
+                        "name": "api-version",
+                        "in": "query",
+                        "description": "The service API version.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "sp",
+                        "in": "query",
+                        "description": "The permissions; generally 'read' or 'write'.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "sv",
+                        "in": "query",
+                        "description": "The version number of the query parameters.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "sig",
+                        "in": "query",
+                        "description": "The SHA 256 hash of the entire request URI with an internal key.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "The request body.",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/request-manual"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "The Logic App Response.",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "200": {
+                        "description": "The Logic App Response.",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        }
+    },
+    "definitions": {
+        "request-manual": {
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

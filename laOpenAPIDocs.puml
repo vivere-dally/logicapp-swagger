@@ -1,0 +1,22 @@
+@startuml Azure Logic Apps OpenAPI documentation
+
+actor Developer as dev
+participant "Azure Pipeline" as pip
+boundary "Logic App" as la
+boundary "Storage Account" as sa
+
+dev  -> pip   : Run (Configuration=Prod)
+activate pip
+pip  -> la    : POST\nhttps://management.azure.com/.../Microsoft.Logic/workflows/{workflowName}/listSwagger
+activate la
+pip <-- la    : JSON\nOpen API Definitions
+deactivate la
+pip  -> pip   : Build Open API JSON file
+pip  -> sa    : Upload to Blob Open API JSON file
+activate sa
+pip <-- sa    : Staus Code
+deactivate sa
+dev <-- pip   : Run status
+deactivate pip
+
+@enduml
